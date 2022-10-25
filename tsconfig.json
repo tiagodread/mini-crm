@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2016",
-    "lib": ["es5", "es6", "ES2018"],
+    "lib": ["es5", "es6", "ES2018", "DOM"],
+    "types": ["cypress", "node"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "CommonJS",
@@ -15,7 +16,7 @@
     "noImplicitAny": true,
     "strictPropertyInitialization": false
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/tests/cypress/support"],
   "exclude": ["node_modules", "dist"],
   "ts-node": {
     "files": true

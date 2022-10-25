@@ -12,13 +12,17 @@ export class UserController {
     async create(req: Request, res: Response) {
         const {name, email, password} = req.body
 
-        if (!name || !email || !password) {
-            return res.status(400).send({error: "missing required fields"})
+        if (!name) {
+            return res.status(400).send({error: "missing required field name"})
+        } else if (!email) {
+            return res.status(400).send({error: "missing required field email"})
+        } else if (!password) {
+            return res.status(400).send({error: "missing required field password"})
         }
 
         try {
             const alreadyRegistered = await userRepository.createQueryBuilder('user').where("user.email = :email", {email}).getOne()
-            if (alreadyRegistered) return res.status(400).send({error: 'Email already exists'})
+            if (alreadyRegistered) return res.status(400).send({error: 'User already exists'})
 
             const user = userRepository.create({name, email, password})
             await userRepository.save(user)
@@ -28,7 +32,7 @@ export class UserController {
                     id: user.id,
                     name: user.name,
                     email: user.email,
-                    create_at: user.createdAt,
+                    created_at: user.createdAt,
                     updated_at: user.updatedAt
                 },
                 token
@@ -54,7 +58,7 @@ export class UserController {
                 id: user.id,
                 name: user.name,
                 email: user.email,
-                create_at: user.createdAt,
+                created_at: user.createdAt,
                 updated_at: user.updatedAt
             },
             token: generateToken({id: user.id}),

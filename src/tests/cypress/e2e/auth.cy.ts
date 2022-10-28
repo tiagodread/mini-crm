@@ -229,7 +229,7 @@ describe('/reset_password', () => {
 
         cy.wait(3 * 1000);
 
-        cy.getForgotAccountMessage(email).then((message) => {
+        cy.getForgotAccountMessage(email).then((message: any) => {
             cy.request({
                 method: 'POST',
                 url: '/auth/reset_password',

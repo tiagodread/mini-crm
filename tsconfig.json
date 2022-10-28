@@ -16,7 +16,7 @@
     "noImplicitAny": true,
     "strictPropertyInitialization": false
   },
-  "include": ["src/**/*", "src/tests/cypress/support"],
+  "include": ["src/**/*", "src/tests/cypress/support/e2e.ts"],
   "exclude": ["node_modules", "dist"],
   "ts-node": {
     "files": true
